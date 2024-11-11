@@ -1,0 +1,126 @@
+Linux Directories:
+pwd: The pwd command stands for (print working directory). It displays the current working location or directory of the user.
+ls -l or ls or dir: The ls command is used to show the list of a folder. It will list out all the files in the directed folder.{
+ls -a : view visible and hidden folder in present working Directory. 
+}
+cd: The cd command stands for (change directory). It is used to change to the directory you want to work from the present directory.{
+cd <folder_name> : one folder go ahead.
+cd <folder1>/<folder2>/<folder3>/<...> : multiple folder go ahead.
+"cd ../" or "cd -" : go back one step.
+cd ../../ : 2 step go back. by using this theory you can go back more step.
+cd /  : Change to the root directory
+cd ~ : Change to the home directory
+}
+mkdir: With mkdir command you can create your own directory.{
+mkdir <folder_name> : create single folder
+mkdir -v <folder_name> <folder_name> <folder_name> : create multiple folder
+mkdir -p <parrent_folder>/<sub_folder> : create sub folder under parent folder.
+}
+rmdir: The rmdir command is used to remove a empty directory from your system. {
+rmdir -p <parent_folder>/<sub_folder>/<sub_folder> : This command will delete a empty directory including its empty sub-directories all at once. 
+}
+
+rm -rf <folder_Name> : remove a non empty directory from your system.
+
+mv old_folder new_folder : rename a folder.
+
+mkdir -m=MODE : here mode is  read(r), write(w), and execute(x) {
+mkdir -m=rwx folder_name : For full access, command
+mkdir -m=rw <file> : For read and write, command 
+mkdir -m=r <file> : For read command
+mkdir -m=w <file> : For write command
+mkdir -m=x <file> : For execute command
+}
+
+cat > file.extention : The above command will create a text file and will enter in the editor mode. Now, enter the desired text and press CTRL + D key to save and exit the file and it will return to the command line.
+cat file.extention : To display the content of the file.
+cat >> file.extention : 
+cat > filename <<EOF  
+... content ...
+EOF  : The <<EOF syntax is used to input multiple lines into a file until EOF is typed. This is often called a Here Document and allows multi-line content input until the specified end marker (EOF here).
+Example:
+cat > myfile.txt <<EOF
+This is line one.
+This is line two.
+EOF 
+when EOF find this command terminated. 
+cat file1 file2 ... > newfile : Concatenating Contents of Multiple Files
+cat oldfile > newfile :  Copying Content from One File to Another
+
+
+touch file.extention : To create a file, execute the touch command.
+touch file1.extention file2.extention file3.extention : create multiple file at a time
+echo " File content" > test6.txt  or printf " File content" > test7.txt  : file create
+touch -a -t 202401011200 filename.txt : The -a option changes only the access time (atime) CC: Century (20 for 2024) YY: Year (24 for 2024) MM: Month (01 for January) DD: Day (01 for the 1st) hh: Hour (12 for 12 PM in 24-hour format) mm: Minutes (00 for exactly 12:00)
+touch -m -t 202401011200 filename.txt : The -a option changes only the modify time (atime) CC: Century (20 for 2024) YY: Year (24 for 2024) MM: Month (01 for January) DD: Day (01 for the 1st) hh: Hour (12 for 12 PM in 24-hour format) mm: Minutes (00 for exactly 12:00)
+
+
+rm *<extension>  : This command can be used to remove all the files ending with same extensions like .pdf, .txt, .odt, .png, etc.
+rm -r <dirname>  :With rm '-r' option, you can delete a directory having sub directories inside it. 
+rm -i  :  Before deleting a file it will ask you whether you want to delete it or not. This for file.
+rm -ri : Before deleting a file it will ask you whether you want to delete it or not. This for folder.
+cp [options] source destination : ex: cp file1.txt /destination/path/  
+cp file1.txt /destination/path/newfile.txt : copy this file and change this file name
+cp file1.txt /destination/path/newfile.txt : copy multiple file
+
+file [range]* : ex : file [a-g]* 
+mv /path/to/source/folder /path/to/destination/ : move file or folder one place to another place
+rm *<extension>  : This command can be used to remove all the files ending with same extensions like .pdf, .txt, .odt, .png, etc.
+mv * /path/to/destination/: This command is used to move all the files from the current directory to another specified directory at once.
+mv -u /path/to/source/folder /path/to/destination/ : lready exist in the destination directory will be automtically skipped and all the other files will be copied.
+
+
+head <file name> : The 'head' command displays the starting content of a file. By default, it displays starting 10 lines of any file.
+head <file name> <file name> : multiple file
+head -n number <file name>  : head -n 15 jtp.txt  
+tail <file name>  : Linux tail command is used to display the last ten lines of one or more files. 
+tail <file name> <file name> : multiple file
+tail -n number <file name>  : head -n 15 jtp.txt  
+
+
+tac <file name>  : The 'tac' command is the reverse of the 'cat' command. It is also known as 'cat' backward. It will display the file content in reverse order.
+more <file name>  :  'more' command displays output one screenful at a time.
+less <file name>  : It automatically adjust with the width and height of the teminal window, while 'more' command cuts the content as the width of the terminal window get shorter. NB: press q terminated to the less command
+less -N filename : The -N option shows line numbers in the left margin, making it easier to refer to specific lines.
+less -p "pattern" filename : -p option allows you to start viewing the file at the first occurrence of a specified pattern. 
+
+
+grep : It supports regular expressions, making it versatile for finding text patterns. {
+grep "pattern" filename : ex -> grep "error" logfile.txt This command searches for the word "error" in logfile.txt and displays matching lines.
+grep -i "pattern" filename : Case-Insensitive Search
+grep -v "pattern" filename : ex -> grep -v "pattern" filename This displays all lines in logfile.txt that do not contain "success."
+grep -r "pattern" directory/ : ex-> grep -r "error" /var/log/ This searches for "error" in all files within /var/log/ and its subdirectories.
+grep -l "pattern" directory/* : ex-> grep -l "error" /var/log/* This displays the names of files in /var/log/ that contain the word "error."
+grep -c "pattern" filename : ex -> grep -c "error" logfile.txt This displays the number of lines containing "error" in logfile.txt.
+
+}
+
+
+find -{
+find [path] -name "filename": he -name option searches for files and directories with a specific name.
+find [path] -type [f|d|l] : -type f: Finds files. -type d: Finds directories. type l: Finds symbolic links.
+find [path] -empty : Finds empty files and directories.
+find [path] [options] -delete :  Deletes files that match the search criteria.
+find [path] '*ext' : find all files this extention in given path
+}
+
+locate filename : ex -> locate myfile.txt Finds all files or directories named myfile.txt across the system.
+
+cal : Displays the calendar for the current month.
+cal 12 2023 : Displays the calendar for December 2023.
+cal 2024 : Shows the entire calendar for 2024.
+
+
+date : Shows the current system date and time.
+date --date="2 years ago" : This command will calculate and display the date exactly two years before the current date.
+date --date="Jan 01 2002" : go back given date
+date --date="3 year" : give 3 year ago full calender.
+
+
+vi filename : This command opens vi with the specified file. If the file doesn’t exist, vi will create it upon saving. view details on github
+chmod [options] mode file_name : The chmod command in Linux is used to change the permissions of files and directories. view details on github
+nano filename :  the most commonly used commands in the nano text editor. view details on github
+ 
+
+
+
