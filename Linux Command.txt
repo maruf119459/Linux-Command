@@ -120,7 +120,37 @@ date --date="3 year" : give 3 year ago full calender.
 vi filename : This command opens vi with the specified file. If the file doesn’t exist, vi will create it upon saving. view details on github
 chmod [options] mode file_name : The chmod command in Linux is used to change the permissions of files and directories. view details on github
 nano filename :  the most commonly used commands in the nano text editor. view details on github
- 
+
+shell scripting:
+NB: when you want to execute any file you must be set permission. execute before you must run this command: chmod u+x fileName.extention
+run shell file: ./file_name.sh
+read a variable: read -p "message" variable_name
+print variable value: echo "$variable_name"
+condition command: 
+equal check condition: $a -eq $b
+not equal check condition: $a -nq $b
+getter than check condition: $a -gt $b
+less than check condition: $a -lt $b
+getter than equal check condition: $a -ge $b
+less than equal check condition: $a -le $b
+if [ expression1 or condition with in square bracket]
+then
+   statement1
+   statement2
+   .
+   .
+elif [ expression2 ]
+then
+   statement3
+   statement4
+   .
+   .
+else
+   statement5
+fi
+
+add two value: c=$(($a+$b))
+Loops: https://www.tutorialspoint.com/unix/unix-shell-loops.htm	
 
 
 
