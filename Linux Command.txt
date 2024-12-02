@@ -1,8 +1,13 @@
+terminal text copy command: shift + ctrl + c
+terminal text paste command: shift + ctrl + v
+
 Linux Directories:
 pwd: The pwd command stands for (print working directory). It displays the current working location or directory of the user.
 ls -l or ls or dir: The ls command is used to show the list of a folder. It will list out all the files in the directed folder.{
 ls -a : view visible and hidden folder in present working Directory. 
 }
+
+
 cd: The cd command stands for (change directory). It is used to change to the directory you want to work from the present directory.{
 cd <folder_name> : one folder go ahead.
 cd <folder1>/<folder2>/<folder3>/<...> : multiple folder go ahead.
@@ -10,31 +15,22 @@ cd <folder1>/<folder2>/<folder3>/<...> : multiple folder go ahead.
 cd ../../ : 2 step go back. by using this theory you can go back more step.
 cd /  : Change to the root directory
 cd ~ : Change to the home directory
+cd - : change to the desktop directory
 }
+
+
 mkdir: With mkdir command you can create your own directory.{
-mkdir <folder_name> : create single folder
+mkdir <folder_name> : create single folder 
 mkdir -v <folder_name> <folder_name> <folder_name> : create multiple folder
 mkdir -p <parrent_folder>/<sub_folder> : create sub folder under parent folder.
 }
+
 rmdir: The rmdir command is used to remove a empty directory from your system. {
 rmdir -p <parent_folder>/<sub_folder>/<sub_folder> : This command will delete a empty directory including its empty sub-directories all at once. 
 }
 
-rm -rf <folder_Name> : remove a non empty directory from your system.
 
-mv old_folder new_folder : rename a folder.
-
-mkdir -m=MODE : here mode is  read(r), write(w), and execute(x) {
-mkdir -m=rwx folder_name : For full access, command
-mkdir -m=rw <file> : For read and write, command 
-mkdir -m=r <file> : For read command
-mkdir -m=w <file> : For write command
-mkdir -m=x <file> : For execute command
-}
-
-cat > file.extention : The above command will create a text file and will enter in the editor mode. Now, enter the desired text and press CTRL + D key to save and exit the file and it will return to the command line.
-cat file.extention : To display the content of the file.
-cat >> file.extention : 
+cat command:
 cat > filename <<EOF  
 ... content ...
 EOF  : The <<EOF syntax is used to input multiple lines into a file until EOF is typed. This is often called a Here Document and allows multi-line content input until the specified end marker (EOF here).
@@ -51,21 +47,21 @@ cat oldfile > newfile :  Copying Content from One File to Another
 touch file.extention : To create a file, execute the touch command.
 touch file1.extention file2.extention file3.extention : create multiple file at a time
 echo " File content" > test6.txt  or printf " File content" > test7.txt  : file create
-touch -a -t 202401011200 filename.txt : The -a option changes only the access time (atime) CC: Century (20 for 2024) YY: Year (24 for 2024) MM: Month (01 for January) DD: Day (01 for the 1st) hh: Hour (12 for 12 PM in 24-hour format) mm: Minutes (00 for exactly 12:00)
-touch -m -t 202401011200 filename.txt : The -a option changes only the modify time (atime) CC: Century (20 for 2024) YY: Year (24 for 2024) MM: Month (01 for January) DD: Day (01 for the 1st) hh: Hour (12 for 12 PM in 24-hour format) mm: Minutes (00 for exactly 12:00)
 
 
+rm -rf <folder_Name> : remove a non empty directory from your system.
 rm *<extension>  : This command can be used to remove all the files ending with same extensions like .pdf, .txt, .odt, .png, etc.
 rm -r <dirname>  :With rm '-r' option, you can delete a directory having sub directories inside it. 
 rm -i  :  Before deleting a file it will ask you whether you want to delete it or not. This for file.
 rm -ri : Before deleting a file it will ask you whether you want to delete it or not. This for folder.
-cp [options] source destination : ex: cp file1.txt /destination/path/  
-cp file1.txt /destination/path/newfile.txt : copy this file and change this file name
-cp file1.txt /destination/path/newfile.txt : copy multiple file
 
-file [range]* : ex : file [a-g]* 
+cp file1.txt /home/user/documents/destination/ : Copies file1.txt to the /home/user/documents/ directory. 
+cp file1.txt /destination/path/newfile.txt : copy this file and change this file name
+cp file1.txt file2.txt /home/user/documents/destination/ : copy multiple file
+
+file [range]* : ex : file [a-g]*
+mv old_folder_name new_folder_name : rename a folder. 
 mv /path/to/source/folder /path/to/destination/ : move file or folder one place to another place
-rm *<extension>  : This command can be used to remove all the files ending with same extensions like .pdf, .txt, .odt, .png, etc.
 mv * /path/to/destination/: This command is used to move all the files from the current directory to another specified directory at once.
 mv -u /path/to/source/folder /path/to/destination/ : lready exist in the destination directory will be automtically skipped and all the other files will be copied.
 
@@ -78,27 +74,53 @@ tail <file name> <file name> : multiple file
 tail -n number <file name>  : head -n 15 jtp.txt  
 
 
-tac <file name>  : The 'tac' command is the reverse of the 'cat' command. It is also known as 'cat' backward. It will display the file content in reverse order.
 more <file name>  :  'more' command displays output one screenful at a time.
 less <file name>  : It automatically adjust with the width and height of the teminal window, while 'more' command cuts the content as the width of the terminal window get shorter. NB: press q terminated to the less command
+
 less -N filename : The -N option shows line numbers in the left margin, making it easier to refer to specific lines.
-less -p "pattern" filename : -p option allows you to start viewing the file at the first occurrence of a specified pattern. 
+Example:
+example.txt
+Hello, this is the first line.
+This is the second line.
+Here is the third line.
+run command: less -N example.txt
+Output:
+1  Hello, this is the first line.
+2  This is the second line.
+3  Here is the third line.
+
+less -p "pattern" filename : -p option allows you to start viewing the file at the first occurrence of a specified pattern. Start Viewing at a Pattern
+Example:
+example.txt
+INFO: Application started.
+DEBUG: Initializing configuration.
+ERROR: Unable to load file.
+INFO: Operation completed.
+run command: less -p "ERROR" example.txt
+output:
+ERROR: Unable to load file.
+INFO: Operation completed.
+Explation: The less command will start displaying the file from the line where "ERROR" is first found. The word "ERROR" will be highlighted in the output.
+
+-------------------------------------------------------------- Complete -----------------------------------------------------------------------------------------------
 
 
 grep : It supports regular expressions, making it versatile for finding text patterns. {
-grep "pattern" filename : ex -> grep "error" logfile.txt This command searches for the word "error" in logfile.txt and displays matching lines.
+grep "pattern" filename : ex -> grep "error" logfile.txt : This command searches for the word "error" in logfile.txt and displays matching lines.
 grep -i "pattern" filename : Case-Insensitive Search
-grep -v "pattern" filename : ex -> grep -v "pattern" filename This displays all lines in logfile.txt that do not contain "success."
-grep -r "pattern" directory/ : ex-> grep -r "error" /var/log/ This searches for "error" in all files within /var/log/ and its subdirectories.
-grep -l "pattern" directory/* : ex-> grep -l "error" /var/log/* This displays the names of files in /var/log/ that contain the word "error."
-grep -c "pattern" filename : ex -> grep -c "error" logfile.txt This displays the number of lines containing "error" in logfile.txt.
+grep -v "pattern" filename : ex -> grep -v "pattern" : filename This displays all lines in logfile.txt that do not contain "success."
+grep -r "pattern" directory/ : ex-> grep -r "error" /var/log/ : This searches for "error" in all files within /var/log/ and its subdirectories.
+grep -l "pattern" directory/* : ex-> grep -l "error" /var/log/* : This displays the names of files in /var/log/ that contain the word "error."
+grep -c "pattern" filename : ex -> grep -c "error" logfile.txt : This displays the number of lines containing "error" in logfile.txt.
 
+grep -i -o "section" filename | wc -l: Count how many times the word "section" is used. This command is case in-sensitive
+grep -o "section" filename | wc -l :  Count how many times the word "section" is used. case sensitive.
 }
 
 
 find -{
-find [path] -name "filename": he -name option searches for files and directories with a specific name.
-find [path] -type [f|d|l] : -type f: Finds files. -type d: Finds directories. type l: Finds symbolic links.
+find [path] -name "filename":  Searches for files and directories with a specific name in the given path. The search is case-sensitive by default. case-insensitive command: find /home/user -iname "Document.txt"
+find [path] -type [f|d|l] : Find Files, Directories, or Links by Type. -type f: Finds files. -type d: Finds directories. type l: Finds symbolic links.
 find [path] -empty : Finds empty files and directories.
 find [path] [options] -delete :  Deletes files that match the search criteria.
 find [path] '*ext' : find all files this extention in given path
@@ -115,11 +137,54 @@ date : Shows the current system date and time.
 date --date="2 years ago" : This command will calculate and display the date exactly two years before the current date.
 date --date="Jan 01 2002" : go back given date
 date --date="3 year" : give 3 year ago full calender.
+date --date="Dec 25 2024" +"%A" : Display the Day of the Week for a Specific Date
+
+
+
 
 
 vi filename : This command opens vi with the specified file. If the file doesn’t exist, vi will create it upon saving. view details on github
-chmod [options] mode file_name : The chmod command in Linux is used to change the permissions of files and directories. view details on github
-nano filename :  the most commonly used commands in the nano text editor. view details on github
+chmod [options] mode file_name : The chmod command in Linux is used to change the permissions of files and directories. view details on GitHub
+chmod abc file.txt : a represent owner, b represent group, and c represent others.
+a = 4 means: read-only 
+a = 6 means: read and write. 
+a = 7 means read, write and execute. 
+a = 3 means : write and execute only.
+NB: for b and c is same condition. set permission only user to read ony like this: chmod 400 text.txt , 1st 0 means group have no permission, 2nd 0 means others have no permission
+
+Read (r) – Allows viewing the contents.
+Write (w) – Allows modifying the contents.
+Execute (x) – Allows executing the file (if it’s a program or script) or accessing a directory.
+Permissions are assigned to three classes:
+
+User (u) – The owner of the file.
+Group (g) – Users in the file's group.
+Others (o) – All other users.
+
+chmod u=wx,o=wx myfile.sh :  Set permission to Write and Execute for Owner and Others
+chmod u=wx,o=wx,g=wx myfile.sh :  Set permission to Write and Execute for Owner, group and Others
+chmod u=rwx myfile.sh :  Set permission to Read, Write and Execute for Owner only.
+
+
+
+nano filename :  the most commonly used commands in the nano text editor. view details on GitHub
+| Command                | Description                                   |
+|------------------------|-----------------------------------------------|
+| `Ctrl + O`             | Save file                                     |
+| `Ctrl + X`             | Exit nano                                     |
+| `Ctrl + K`             | Cut line                                      |
+| `Ctrl + U`             | Paste                                         |
+| `Ctrl + Shift + 6`     | Start selecting text                          |
+| `Ctrl + A` / `Ctrl + E`| Move to beginning/end of the line             |
+| `Ctrl + W`             | Search for text                               |
+| `Ctrl + \`             | Search and replace text                       |
+| `Ctrl + T`             | Spell check                                   |
+| `Ctrl + G`             | Display help                                  |
+| `Ctrl + _`             | Go to a specific line                         |
+| `Alt + U` / `Alt + E`  | Undo / Redo                                   |
+
+ 
+
 
 shell scripting:
 NB: when you want to execute any file you must be set permission. execute before you must run this command: chmod u+x fileName.extention
@@ -153,4 +218,50 @@ add two value: c=$(($a+$b))
 Loops: https://www.tutorialspoint.com/unix/unix-shell-loops.htm	
 
 
+While Loop:
+#!/bin/bash
 
+n=4  # Number of rows
+
+row=1
+while [ $row -le $n ]; do
+    # Print leading spaces
+    spaces=$((n - row))
+    while [ $spaces -gt 0 ]; do
+        echo -n " "  # Single space for proper alignment
+        spaces=$((spaces - 1))
+    done
+
+    # Print the numbers in a row
+    col=1
+    while [ $col -le $row ]; do
+        echo -n "$row "  # Print the row number followed by a space
+        col=$((col + 1))
+    done
+
+    echo  # Move to the next line
+    row=$((row + 1))
+done
+
+
+
+For Loop:
+#!/bin/bash
+
+n=4  # Number of rows
+num=1
+
+for ((i=1; i<=n; i++)); do
+    # Print leading spaces for alignment
+    for ((j=i; j<n; j++)); do
+        echo -n " "
+    done
+
+    # Print numbers
+    for ((j=1; j<=i; j++)); do
+        echo -n "$num "
+        num=$((num + 1))
+    done
+
+    echo  # Move to the next line
+done
