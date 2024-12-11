@@ -1,4 +1,4 @@
-The given problem can be solved using the 0/1 Knapsack dynamic programming approach, as illustrated in the program. The goal is to calculate the maximum value achievable by selecting items within the weight capacity. Let's solve it step-by-step:
+
 
 ---
 
@@ -10,26 +10,6 @@ The given problem can be solved using the 0/1 Knapsack dynamic programming appro
 ---
 
 ### Dynamic Programming Table:
-
-We will build the DP table as follows:
-
-1. Create a matrix `dp[n+1][W+1]` where:
-   - Rows (`i`) represent items (0 to `n`).
-   - Columns (`w`) represent weights (0 to `W`).
-
-2. **Rules**:
-   - If the current item's weight (`wt[i-1]`) is less than or equal to the current capacity (`w`), include it:
-     \[
-     dp[i][w] = \max\left(\text{val[i-1]} + dp[i-1][w-\text{wt[i-1]}],\ dp[i-1][w]\right)
-     \]
-   - Else, exclude the item:
-     \[
-     dp[i][w] = dp[i-1][w]
-     \]
-
----
-
-### Step-by-Step Solution:
 
 #### Initialize DP Table (Weights: {1, 3, 4, 5}, Values: {1, 4, 5, 7}, Capacity: 7)
 
@@ -47,14 +27,30 @@ We will build the DP table as follows:
 The maximum value for capacity \( W = 7 \) is found in cell `dp[4][7]`, which is **9**.
 
 ---
+Let's solve the 0/1 Knapsack problem using the **dynamic programming table approach** step-by-step.
 
-### Explanation:
-1. Item 1 is included, providing value **1**.
-2. Item 2 is included, providing value **4**.
-3. Item 3 is included, providing value **5**.
-4. Item 4 is excluded as it would exceed the weight capacity.
+### Step 1: Input
+- **Weights**: {2, 3, 4, 6}
+- **Values**: {3, 4, 8, 9}
+- **Capacity (W)**: 8
 
----
 
-### Code Confirmation:
-The given code in the image correctly implements this solution, and the result matches the analysis. The output is **9**, as expected.
+### Step 4: Solve the Problem
+Here is the table-filled step-by-step solution:
+
+#### Table Construction
+| \( i \) (items) | \( w = 0 \) | \( w = 1 \) | \( w = 2 \) | \( w = 3 \) | \( w = 4 \) | \( w = 5 \) | \( w = 6 \) | \( w = 7 \) | \( w = 8 \) |
+|-----------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|
+| 0              | 0          | 0          | 0          | 0          | 0          | 0          | 0          | 0          | 0          |
+| 1              | 0          | 0          | 3          | 3          | 3          | 3          | 3          | 3          | 3          |
+| 2              | 0          | 0          | 3          | 4          | 4          | 7          | 7          | 7          | 7          |
+| 3              | 0          | 0          | 3          | 4          | 8          | 8          | 11         | 12         | 12         |
+| 4              | 0          | 0          | 3          | 4          | 8          | 8          | 11         | 12         | 12         |
+
+
+
+### Step 5: Result
+The maximum value for capacity \( W = 8 \) is in \( dp[4][8] = 12 \).
+
+
+
